@@ -1,21 +1,21 @@
-#include <LiquidCrystal.h> // the directory for including the lcd syntaxes 
+#include <LiquidCrystal.h> // the library for including the lcd syntaxes 
 
-const int trig = 13; // powering the trigger pin which sends the ultrasonic pulses 
-const int echo = 9;  // powers the echo pin which is the output pin
-
-#include <Servo.h> // the directory for including the servo syntaxes 
+const int trig = 13;  
+const int echo = 9;  
+#include <Servo.h> // the library for including the servo syntaxes 
 
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7); 
 
 // lcd(rs, en, d4, d5, d6, d7)
 // rs - register select, to compare between the incoming text or the command
-// en - 
+// en - enable pin
+// d4, d5... - digital pins
 
 long totaltime;
 int distance, angle, x, y, jStick, i;
 unsigned long t0, t1, response;
 
-enum gamestate
+enum gamestate // the enumeration used to check the current state of the game for clarity
 {
   waiting_for_player,
   waiting_for_input,
@@ -31,11 +31,12 @@ void setup()
 {
   myservo.attach(8);
 
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT);
+  pinMode(trig, OUTPUT); // powering the trigger pin which sends the ultrasonic pulses 
+  pinMode(echo, INPUT);  // powers the echo pin which is the output pin
+
 
   Serial.begin(9600);
-  randomSeed(analogRead(A2));
+  randomSeed(analogRead(A2)); // to generate a random seed used for the pattern of the servo motor
 
   lcd.begin(16,2);
   lcd.clear();
@@ -82,9 +83,8 @@ void loop()
 
   digitalWrite(trig, LOW);
 
-  totaltime = pulseIn(echo, HIGH);
-  distance = totaltime * 0.034 / 2;
-
+  totaltime = pulseIn(echo, HIGH); // measures the length of the pulse used for calculating time 
+  distance = totaltime * 0.034 / 2; // speed of sound is roughly 340 m/s
   // -------- WAITING FOR PLAYER --------
   if (state == waiting_for_player)
   {
@@ -97,7 +97,7 @@ void loop()
     if (distance <= 30)
     {      
       int arr[3] = {0, 90, 180};
-      int n = random(0,3);
+      int n = random(0,3); // the operation that is used to make the servo rotate in a random direction 
       angle = arr[n];
       
       Serial.print("Servo Angle: ");
@@ -117,7 +117,7 @@ void loop()
         i--;
       }
 
-      myservo.write(angle);
+      myservo.write(angle); // servo performs the operation 
 
       Serial.println(angle);
 
@@ -134,15 +134,11 @@ void loop()
   }
 
   // -------- WAITING FOR INPUT --------
+
   if (state == waiting_for_input)
   {
     x = analogRead(A0);
     y = analogRead(A1);
-
-    Serial.print("X: ");
-    Serial.print(x);
-    Serial.print(" Y: ");
-    Serial.println(y);
 
     // Wait until joystick leaves center
     if (!(x >= 480 && x <= 540 && y >= 500 && y <= 550))
