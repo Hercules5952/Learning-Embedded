@@ -75,3 +75,5 @@ Arduino board 1
 ---
 
 Part of my self-directed embedded systems learning roadmap.
+
+![image alt](https://github.com/Hercules5952/Learning-Embedded/blob/3803ad94729cd11d57a2ac4dae732acd6362a8bc/arduino/03-Simon_says_game/images/Screenshot%202026-07-25%20114713.png)
