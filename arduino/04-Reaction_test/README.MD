@@ -58,7 +58,10 @@ Hardware Components:
 
 * ##### This was my first time using enumerations to handle game state logic. Like in the previous Simon Says game, I tried using boolean flags to handle the game state, but realized enumerations made it far simpler, since multiple states could be named clearly.
 * ##### The hardware related to the LCD was tricky to handle, since the potentiometer needed to be tuned to get an accurate, readable display.
-* ##### lcd.clear() and lcd.print() are called repeatedly throughout the code, which isn't very scalable. A dedicated display-update function should be used in later versions to fix this.
+* ##### lcd.clear() and lcd.print() are called repeatedly throughout the code, which isn't very scalable. A dedicated display-update function should
+be used in later versions to fix this.
+
+![Reaction Test Demo](images/Screenshot 2026-07-25 112505.png)
 
 #### 
 
