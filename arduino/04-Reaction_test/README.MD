@@ -61,7 +61,7 @@ Hardware Components:
 * ##### lcd.clear() and lcd.print() are called repeatedly throughout the code, which isn't very scalable. A dedicated display-update function should
 be used in later versions to fix this.
 
-![Reaction Test Demo](images/Screenshot 2026-07-25 112505.png)
+![image alt](https://github.com/Hercules5952/Learning-Embedded/blob/4fa53c217a2c44d52b4d63d51f7d570e27e5de53/arduino/04-Reaction_test/images/Screenshot%202026-07-25%20112505.png)
 
 #### 
 
